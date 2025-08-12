@@ -15,6 +15,7 @@ app.post('/cadastro',(req,res)=>{
     //console.log(req.body)
     usuarios.push(req.body)
     //res.status(201).send('O POST FUNCIONOUUU')
+    res.status(201).json(req.body)
 })
 
 //Porta local do servidor
