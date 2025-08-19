@@ -1,9 +1,11 @@
 import express from 'express'
+
+import pkg from '@prisma/client'
+const { PrismaClient } = pkg
+const prisma =  new PrismaClient()
+
 const app = express()
-
 app.use(express.json())
-
-const usuarios = []
 
 //Rotas
 app.get('/cadastro',(req,res)=>{
