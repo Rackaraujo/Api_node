@@ -7,16 +7,20 @@ const prisma =  new PrismaClient()
 const app = express()
 app.use(express.json())
 
-//Rotas
-app.get('/cadastro',(req,res)=>{
-    //res.send('O GET FUNCIONOUUU')
-    res.status(200).json(usuarios)
+//Criando rotas
+app.get('/cadastro',async(req,res)=>{
+    const lista_usuarios = await prisma.usuario.findMany()
+    res.status(200).json(lista_usuarios)
 })
 
-app.post('/cadastro',(req,res)=>{
-    //console.log(req.body)
-    usuarios.push(req.body)
-    //res.status(201).send('O POST FUNCIONOUUU')
+app.post('/cadastro',async(req,res)=>{
+    await prisma.usuario.create({
+        data:{
+            email: req.body.email,
+            nome: req.body.nome,
+            idade: req.body.idade
+        }
+    })
     res.status(201).json(req.body)
 })
 
